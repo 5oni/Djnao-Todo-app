@@ -6,7 +6,7 @@
     }
     
     * {
-        font-family: Algerian;
+        font-family: Absinette;
         color: white;
     }
 </style>
@@ -28,7 +28,7 @@
 <body style="background-color: black;">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black mx-5">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-black mx-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">ToDo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,12 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'task' %}">Tasks</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
                 </ul>
+                <div class="position-absolute top-0 end-0  my-5" style="padding-right: 40px;"><strong>User - {{request.user}}</strong></div>
+
             </div>
         </div>
     </nav>
@@ -58,8 +63,10 @@
             {% csrf_token %} {{task_edit_form}}
             <button type="submit">Update</button>
         </form> -->
+        
         <form action="" method="POST">
             {% csrf_token %}
+            
             <div class='container'>
 
                 <h2 class='text-center'> Update Task</h2>
@@ -81,6 +88,7 @@
                     <button type="submit" class="btn btn-outline-info my-5">Update</button>
                 </div>
             </div>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

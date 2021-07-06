@@ -3,6 +3,7 @@
 <style>
     #todotable {
         --bs-table-bg: black;
+        font-size: 15px;
     }
     
     .dataTables_filter input,
@@ -11,8 +12,9 @@
     }
     
     * {
-        font-family: Algerian;
+        font-family: Absinette;
         color: white;
+        
     }
 </style>
 
@@ -37,7 +39,7 @@
 <body style="background-color: black;">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black mx-5">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-black mx-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">ToDo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,6 +53,12 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'task' %}">Tasks</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+
+                    <div class="position-absolute top-0 end-0  my-5" style="padding-right: 40px;"><strong>User - {{request.user}}</strong></div>
+
                 </ul>
             </div>
         </div>
@@ -58,6 +66,12 @@
 
 
     <div class="container">
+        {% if success %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            your task has been Updated sucessfully
+            <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
 
         <h2 class='text-center my-3'> All Todo's</h2>
         <div class="text-center">
@@ -94,15 +108,14 @@
                     <td>{{task.date}}</td>
                     <td>
                         <form action="{% url 'delete_todo' task.id %} " method="post ">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-info ">Delete</button>
+                            <button class="btn btn-outline-info" style="font-size: 12px;">Delete</button>
                         </form>
                     </td>
 
                     <td>
                         <form action="{% url 'update_task' task.id %} " method="UPDATE ">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-info ">Update</button>
+                            
+                            <button class="btn btn-outline-info" style="font-size: 12px;">Update</button>
                         </form>
                     </td>
                 </tr>
