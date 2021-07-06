@@ -46,7 +46,7 @@ def delete_todo(request,todo_id):
 def delete_all(request):
     alltasks=Task.objects.all()
     alltasks.delete()
-    return task(request)
+    return redirect('/task/')
 
 def update_task(request, pk):
     context={"success":False}
