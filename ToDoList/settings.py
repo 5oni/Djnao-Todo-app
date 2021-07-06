@@ -25,7 +25,7 @@ SECRET_KEY = '&pr=!7p=8na2+++b0#r=(un^*-l0uuyfyn+5cpv#lgk=cr9&ew'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','https://soni-todo.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1','soni-todo.herokuapp.com']
 
 
 # Application definition
