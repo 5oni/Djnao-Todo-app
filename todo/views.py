@@ -44,14 +44,14 @@ def delete_todo(request,todo_id):
     instance.delete()
     return redirect('/task/')
 def delete_all(request):
-    alltasks=Task.objects.all()
+    alltasks=Task.objects.filter(username=request.user)
     alltasks.delete()
     return redirect('/task/')
 
 def update_task(request, pk):
     context={"success":False}
     if request.method=="POST":
-        alltasks=Task.objects.all() 
+        alltasks=Task.objects.filter(username=request.user) 
         Task.objects.filter(id=pk).update(tasktitle=request.POST['title'],taskdesc=request.POST['desc'],date=request.POST['date'])
         # task.refresh_from_db()
         context={"success":True,"alltasks":alltasks}
