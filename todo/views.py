@@ -7,17 +7,23 @@ import json
 
 # Create your views here.
 def index(request):
-    context={"success":False}
+    context={"success":False,"login":False}
     
     if not request.user.is_authenticated:
         if request.method=="POST":
             username = request.POST['username']
             password = request.POST['password']
+            
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request,user)
             else:
-                user= User.objects.create_user(username=username,password=password)
+                try:
+                    user= User.objects.create_user(username=username,password=password)
+                except:
+                    context={"success":False,"login":True}
+
+                    return render(request,'login.html',context)
                 user.save()
                 login(request,user)
             return redirect("/")
